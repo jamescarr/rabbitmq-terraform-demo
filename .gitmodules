@@ -1,0 +1,6 @@
+[submodule "docker-rabbitmq-cluster"]
+	path = docker-rabbitmq-cluster
+	url = https://github.com/jamescarr/docker-rabbitmq-cluster
+[submodule "rabbitmq-cluster"]
+	path = rabbitmq-cluster
+	url = https://github.com/nanit/kubernetes-rabbitmq-cluster.git

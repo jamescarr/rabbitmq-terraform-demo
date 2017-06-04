@@ -2,9 +2,12 @@
 This is another personal repository to play around with using the rabbitmq terraform provider.
 
 ## Running It
-Run `docker-compose up -d` to bring up a three node rabbitmq cluster in docker.
+The `Makefile` has various targets that do all the heavy lifting for you.
 
-From the terraform directory, run `terraform plan -out a.out` and `terraform apply a.out` to experiment adding users, queues, etc.
+- `make up` - brings up the docker containers for rabbitmq cluster. Visit http://localhost:15672 to verify all containers are up and clustered. Login is *guest*/*guest*.
+- `make init` - initializes the `terraform/` dir
+- `make plan` - does a plan in the dir, removing the outfile if it already exists
+- `make apply` - applies the plan.
 
-## Special Thanks
-http://www.levvel.io/blog-post/testing-rabbitmq-clustering-using-docker-part-1/ for the easily found example of clustering rabbitmq in docker.
+At this point, you should be able to visit the management console and see the exchange create
+as well as both the single `nginx-logs` queue and the sharded `syslogs` queue.
