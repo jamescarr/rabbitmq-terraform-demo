@@ -9,9 +9,18 @@ glide install
 
 ```
 
-Currently this is failing for me when I run `go run` or `go build` from this directory.
+Currently this is failing for me when I run `go run main.go` or `go build` from this directory.
 
 ```
+> $ go build                                                                       ⬡ 7.5.0 [±master ✓]
+main.go:11:3: cannot find package "github.com/streadway/amqp" in any of:
+        /usr/local/Cellar/go/1.8.1/libexec/src/github.com/streadway/amqp (from $GOROOT)
+        /Users/jamescarr/gopath/src/github.com/streadway/amqp (from $GOPATH)
+
+```
+
+```
+> $ go run main.go                                                                       ⬡ 7.5.0 [±master ✓]
 main.go:11:3: cannot find package "github.com/streadway/amqp" in any of:
         /usr/local/Cellar/go/1.8.1/libexec/src/github.com/streadway/amqp (from $GOROOT)
         /Users/jamescarr/gopath/src/github.com/streadway/amqp (from $GOPATH)
