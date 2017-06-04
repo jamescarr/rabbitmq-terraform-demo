@@ -1,6 +1,6 @@
 ################################################
 # A sharded queue is accomplished by creating
-# multiple queues, one on each node, to bance
+# multiple queues, one on each node, to balance
 # the work across the cluster. This implementation
 # requires client awareness by defining the 
 # routing key.
