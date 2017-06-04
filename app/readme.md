@@ -32,5 +32,50 @@ jamescarr@ip-172-27-235-145 ~/Projects/rabbitmq-terraform/app                   
     └── github.com
         └── streadway
             └── amqp
+                ├── CONTRIBUTING.md
+                ├── LICENSE
+                ├── README.md
+                ├── _examples
+                │   ├── pubsub
+                │   │   └── pubsub.go
+                │   ├── simple-consumer
+                │   │   └── consumer.go
+                │   └── simple-producer
+                │       └── producer.go
+                ├── allocator.go
+                ├── allocator_test.go
+                ├── auth.go
+                ├── certs.sh
+                ├── channel.go
+                ├── client_test.go
+                ├── confirms.go
+                ├── confirms_test.go
+                ├── connection.go
+                ├── connection_test.go
+                ├── consumers.go
+                ├── delivery.go
+                ├── delivery_test.go
+                ├── doc.go
+                ├── examples_test.go
+                ├── fuzz.go
+                ├── gen.sh
+                ├── integration_test.go
+                ├── pre-commit
+                ├── read.go
+                ├── read_test.go
+                ├── reconnect_test.go
+                ├── return.go
+                ├── shared_test.go
+                ├── spec
+                │   ├── amqp0-9-1.stripped.extended.xml
+                │   └── gen.go
+                ├── spec091.go
+                ├── tls_test.go
+                ├── types.go
+                ├── uri.go
+                ├── uri_test.go
+                └── write.go
+
+9 directories, 42 files
             
 ```
