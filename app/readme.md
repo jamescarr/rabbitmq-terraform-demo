@@ -18,3 +18,19 @@ main.go:11:3: cannot find package "github.com/streadway/amqp" in any of:
 
 ```
 
+From my current directory (this project):
+
+```
+jamescarr@ip-172-27-235-145 ~/Projects/rabbitmq-terraform/app                                                                                                                                        [11:06:15]
+> $ tree                                                                                                                                                                                    ⬡ 7.5.0 [±master ✓]
+.
+├── glide.lock
+├── glide.yaml
+├── main.go
+├── readme.md
+└── vendor
+    └── github.com
+        └── streadway
+            └── amqp
+            
+```
