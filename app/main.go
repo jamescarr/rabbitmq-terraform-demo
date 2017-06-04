@@ -33,11 +33,12 @@ func send(ch *amqp.Channel, key string, body string) {
 }
 func main() {
   conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/logs")
-	failOnError(err, "Failed to connect to RabbitMQ")
-	defer conn.Close()
+  failOnError(err, "Failed to connect to RabbitMQ")
+  defer conn.Close()
+  
   ch, err := conn.Channel()
-	failOnError(err, "Failed to open the channel")
-	defer ch.Close()
+  failOnError(err, "Failed to open the channel")
+  defer ch.Close()
 
   sigs := make(chan os.Signal, 1)
 
