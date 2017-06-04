@@ -18,24 +18,24 @@ func failOnError(err error, msg string) {
 	}
 }
 
-
 func send(ch *amqp.Channel, key string, body string) {
   ch.Publish(
-		"logs-ingest",     // exchange
-		key, // routing key
-		false,  // mandatory
-		false,  // immediate
-		amqp.Publishing{
-			ContentType: "text/plain",
-			Body:        []byte(body),
-		})
+    "logs-ingest",
+    key,
+    false,              // mandatory
+    false,              // immediate
+    amqp.Publishing{
+      ContentType: "text/plain",
+      Body:        []byte(body),
+    })
 	log.Printf(" [x] Sent %s using key %s", body, key)
 }
+
 func main() {
   conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/logs")
   failOnError(err, "Failed to connect to RabbitMQ")
   defer conn.Close()
-  
+
   ch, err := conn.Channel()
   failOnError(err, "Failed to open the channel")
   defer ch.Close()
