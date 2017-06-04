@@ -11,3 +11,5 @@ The `Makefile` has various targets that do all the heavy lifting for you.
 
 At this point, you should be able to visit the management console and see the exchange create
 as well as both the single `nginx-logs` queue and the sharded `syslogs` queue.
+
+<img width="599" alt="screen shot 2017-06-04 at 7 59 28 am" src="https://cloud.githubusercontent.com/assets/45389/26761790/de246ed4-48fb-11e7-9bc1-280c88ad8947.png">
