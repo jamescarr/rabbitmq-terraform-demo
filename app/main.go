@@ -18,17 +18,27 @@ func failOnError(err error, msg string) {
 	}
 }
 
-func NewConnection() amqp.Connection  {
-  conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
-	failOnError(err, "Failed to connect to RabbitMQ")
-	defer conn.Close()
-  return conn
 
-
+func send(ch *amqp.Channel, key string, body string) {
+  ch.Publish(
+		"logs-ingest",     // exchange
+		key, // routing key
+		false,  // mandatory
+		false,  // immediate
+		amqp.Publishing{
+			ContentType: "text/plain",
+			Body:        []byte(body),
+		})
+	log.Printf(" [x] Sent %s using key %s", body, key)
 }
 func main() {
-  conn := NewConnection()
-  conn.close()
+  conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/logs")
+	failOnError(err, "Failed to connect to RabbitMQ")
+	defer conn.Close()
+  ch, err := conn.Channel()
+	failOnError(err, "Failed to open the channel")
+	defer ch.Close()
+
   sigs := make(chan os.Signal, 1)
 
   signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
@@ -37,6 +47,10 @@ func main() {
   go func() {
     for t := range ticker.C {
       fmt.Println("Tick at ", t.UTC())
+      for i := 0; i <= 4; i++ {
+        key := fmt.Sprintf("syslogs-%d.foo.bar", i)
+        go send(ch, key, "test")
+      }
     }
   }()
 
