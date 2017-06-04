@@ -55,6 +55,9 @@ resource "rabbitmq_exchange" "logs-ingest" {
     type        = "topic"
     durable     = false
     auto_delete = false
+    arguments {
+      alternate-exchange = "unprocessed"
+    }
   }
 }
 
