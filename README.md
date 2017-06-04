@@ -15,4 +15,4 @@ as well as both the single `nginx-logs` queue and the sharded `syslogs` queue.
 <img width="599" alt="screen shot 2017-06-04 at 7 59 28 am" src="https://cloud.githubusercontent.com/assets/45389/26761790/de246ed4-48fb-11e7-9bc1-280c88ad8947.png">
 
 
-There is a go based app under [app](https://github.com/jamescarr/rabbitmq-terraform-demo/master/app/README.md)
+There is a go based app under [app](https://github.com/jamescarr/rabbitmq-terraform-demo/tree/master/app)
