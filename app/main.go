@@ -44,7 +44,7 @@ func main() {
 
   signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-  ticker := time.NewTicker(time.Second * 2)
+  ticker := time.NewTicker(time.Second)
   go func() {
     for t := range ticker.C {
       fmt.Println("Tick at ", t.UTC())
@@ -55,6 +55,31 @@ func main() {
     }
   }()
 
+  NewWorker(1, ch, "syslogs-0")
+  NewWorker(2, ch, "syslogs-1")
+  NewWorker(3, ch, "syslogs-2")
+  NewWorker(4, ch, "unprocessed-messages")
+
   fmt.Println("Publishing messages, hit ctrl+c to exit!")
   <-sigs
+}
+
+func NewWorker(id int, ch *amqp.Channel, qName string) {
+  msgs, err := ch.Consume(
+    qName,                   // queue
+    fmt.Sprintf("c-%d", id), // consumer
+    true,                   // auto-ack
+    false,                   // exclusive
+    false,                   // no-local
+    false,                   // no-wait
+    nil,                     // args
+  )
+
+  failOnError(err, "Failed to register a consumer")
+
+  go func() {
+    for msg := range msgs {
+      log.Printf("[WORKER %d] Received message %s", id, msg.RoutingKey)
+    }
+  }()
 }

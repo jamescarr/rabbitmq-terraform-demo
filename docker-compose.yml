@@ -10,7 +10,7 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    command: bash -c "rabbitmq-plugins enable --offline rabbitmq_sharding && rabbitmq-server"
+    command: bash -c "rabbitmq-plugins enable --offline rabbitmq_consistent_hash_exchange rabbitmq_sharding && rabbitmq-cluster"
   rabbit2:
     image: learningstaircase/rabbitmq-cluster
     hostname: rabbit2
@@ -24,7 +24,7 @@ services:
     ports:
       - "5673:5672"
       - "15673:15672"
-    command: bash -c "rabbitmq-plugins enable --offline rabbitmq_sharding && rabbitmq-server"
+    command: bash -c "rabbitmq-plugins enable --offline rabbitmq_consistent_hash_exchange rabbitmq_sharding && rabbitmq-cluster"
   rabbit3:
     image: learningstaircase/rabbitmq-cluster
     hostname: rabbit3
@@ -37,4 +37,4 @@ services:
     ports:
       - "5674:5672"
       - "15674:15672"
-    command: bash -c "rabbitmq-plugins enable --offline rabbitmq_sharding && rabbitmq-server"
+    command: bash -c "rabbitmq-plugins enable --offline rabbitmq_consistent_hash_exchange rabbitmq_sharding && rabbitmq-cluster"
